@@ -1,0 +1,5 @@
+.conversation-list {
+    width: 25vw;
+    height: 100vh;
+    overflow-y: auto;
+}

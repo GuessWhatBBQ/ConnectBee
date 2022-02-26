@@ -1,0 +1,18 @@
+.conversation-profile-image {
+    width: 50px;
+}
+
+.conversation {
+    display: flex;
+    padding: 10px;
+}
+
+.conversation:hover {
+    background-color: lightgrey;
+    border-radius: 10px;
+}
+
+.conversation-profile-name {
+    margin-left: 5%;
+    border-radius: 50px;
+}
