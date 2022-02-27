@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './InputBox.css'
+
 const InputBox = ({ handleNewMessage }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -9,7 +11,7 @@ const InputBox = ({ handleNewMessage }) => {
     return (
         <div>
             <form onSubmit={handleSubmit} >
-                <input type="text" placeholder="Enter your message" onSubmit={handleSubmit}/>
+                <input className='input-box' type="text" placeholder="Enter your message" onSubmit={handleSubmit}/>
             </form>
         </div>
     );

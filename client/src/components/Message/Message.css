@@ -4,6 +4,7 @@
     max-height:30px;
     width: auto;
     height: auto;
+    border-radius: 50%;
 }
 
 .message {
@@ -26,14 +27,15 @@
 }
 
 .sender .message-text {
-    background-color: blue;
+    background-color: #ffae00;
 }
 
 .receiver {
     align-self: flex-end;
+    flex-direction: row-reverse;
     /* flex: 50%; */
 }
 
 .receiver .message-text {
-    background-color: slategray;
+    background-color: #C65B40;
 }
