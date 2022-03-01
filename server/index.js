@@ -6,20 +6,20 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer);
 
-function generateRoomID(otherID) {
-    return '' + otherID;
+function generateRoomID(id) {
+    return '' + id;
 }
 
 io.on("connection", (socket) => {
     socket.on("newMessageSent",({selfProfileID, conversationID, message}) => {
         socket.to(generateRoomID(conversationID)).emit("newMessageReceived", { senderProfileID: selfProfileID, message });
     });
-    socket.on("joinNewRoom", ({selfProfileID, conversationID}) => {
+    socket.on("joinNewRoom", ({ selfProfileID }) => {
         const roomID = generateRoomID(selfProfileID);
         socket.join(roomID);
     });
     socket.on("leaveRoom", ({selfProfileID, conversationID}) => {
-        socket.leave(generateRoomID(selfProfileID, conversationID));
+        socket.leave(generateRoomID(selfProfileID));
     });
 });
 
