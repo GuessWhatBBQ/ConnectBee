@@ -28,6 +28,15 @@ export default makeStyles((theme) => ({
       color: "#FFEA00",
     },
   },
+  logout: {
+    backgroundColor: "#FFEA00",
+    color: "#000000",
+
+    "&:hover": {
+      backgroundColor: "#000000",
+      color: "#FFEA00",
+    },
+  },
   toolbar: {
     display: "flex",
     justifyContent: "flex-end",
@@ -41,13 +50,16 @@ export default makeStyles((theme) => ({
   userName: {
     display: "flex",
     alignItems: "center",
+    color: "#FFEA00",
   },
   brandContainer: {
     display: "flex",
     alignItems: "center",
   },
   purple: {
-    color: theme.palette.getContrastText(deepPurple[500]),
-    backgroundColor: deepPurple[500],
+    // color: theme.palette.getContrastText(deepPurple[500]),
+    // backgroundColor: deepPurple[500],
+    backgroundColor: "#FFEA00",
+    color: "#000000",
   },
 }));

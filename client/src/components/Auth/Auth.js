@@ -8,27 +8,37 @@ import {
   Container,
   TextField,
 } from "@material-ui/core";
+import { useDispatch } from "react-redux";
 import { GoogleLogin } from "react-google-login";
+import { useNavigate } from "react-router-dom";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+
 import Input from "./Input";
 import Icon from "./Icon";
-
 import useStyles from "./styles";
 const Auth = () => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
+  const [isSignup, setIsSignup] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
-
-  const [isSignup, setIsSignup] = useState(false);
-
   const handleSubmit = () => {};
   const handleChange = () => {};
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
   };
   const googleSuccess = async (res) => {
-    console.log(res);
+    const result = res?.profileObj;
+    const token = res?.tokenId;
+    try {
+      dispatch({ type: "AUTH", data: { result, token } });
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
   const googleFailure = () => {
     console.log("Google Sign In was unsuccessful. Try again later");
