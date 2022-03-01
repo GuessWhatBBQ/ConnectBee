@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
 import ConversationList from '../../components/ConversationList/ConversationList';
 import ChatBox from '../../components/ChatBox/ChatBox';
 
-import { friendList } from './DummyData';
+import { conversations } from './DummyData';
 // import { conversationHistory } from './DummyData';
 import io from "socket.io-client";
 
@@ -10,9 +12,24 @@ import './Messenger.css';
 
 const Messenger = () => {
     const [participents, setParticipents] = useState({
-        selfID: 0,
-        conversationID: 0,
+        selfID: '621e4f1b5ae522446cb6f1b9',
+        conversationID: '621e52d5efa453256a052183',
     });
+    const [conversationHistory, setConversationHistory] = useState({
+        _id: "0",
+        messages: [{
+            sender: "",
+            text: "",
+            _id: "",
+            timeStamp: "",
+        }],
+    });
+    const [conversationList, setConversationList] = useState([{
+        _id: "0",
+        name: "",
+        creationDate: "",
+    }]);
+
     const socket = io();
     function handleConversationChange(newConversationID) {
         // socket.emit('leaveRoom', {selfProfileID: participents.selfID, conversationID: participents.conversationID});
@@ -20,11 +37,24 @@ const Messenger = () => {
             ...participents,
             conversationID: newConversationID,
         }));
+        axios.get('/conversation/' + newConversationID).then(({ data }) => {
+            setConversationHistory(data.conversation);
+        });
     }
+    useEffect(() => {
+        axios.get('/conversation/' + participents.conversationID).then(({ data }) => {
+            setConversationHistory(data.conversation);
+            });
+    }, []);
+    useEffect(() => {
+        axios.get('/conversations/' + participents.selfID).then(({ data }) => {
+            setConversationList(data.conversation);
+        });
+    }, []);
     return (
         <div className='messenger'>
-            <ConversationList friendList={friendList} socket={socket} participents={participents} handleConversationChange={handleConversationChange}/>
-            <ChatBox conversationHistory={friendList[participents.conversationID].conversationHistory} socket={socket} participents={participents}/>
+            <ConversationList conversationList={conversationList} socket={socket} participents={participents} handleConversationChange={handleConversationChange}/>
+            <ChatBox conversationHistory={conversationHistory.messages} socket={socket} participents={participents}/>
         </div>
     );
 };

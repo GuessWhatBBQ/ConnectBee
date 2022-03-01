@@ -5,6 +5,10 @@
     font-family: 'Urbanist';
 }
 
+body {
+    background-color: #FFF275;
+}
+
 .messenger {
     display: flex;
     /* background: black; */

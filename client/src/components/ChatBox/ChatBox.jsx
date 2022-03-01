@@ -19,15 +19,19 @@ import './ChatBox.css';
 function ChatBox ({ conversationHistory, socket, participents }) {
     var [messages, setMessages] = useState(conversationHistory);
     const mess = messages.map((message) => {
+        let sender = false;
+        if (participents.selfID !== message.sender.toString()) {
+            sender = true;
+        }
         return (
-            <Message message={message} key={message.key}/>
+            <Message message={message} key={message._id} sender={sender}/>
         );
     });
     const createNewMessage = (text) => {
         const newMessage = {
             profileImage: 'img/profile/1.png',
             text: text,
-            sender: false,
+            sender: true,
         };
         socket.emit("newMessageSent", {selfProfileID: participents.selfID, conversationID: participents.conversationID, message: text});
         setMessages((messages) => messages.concat([newMessage]));
@@ -41,7 +45,7 @@ function ChatBox ({ conversationHistory, socket, participents }) {
             const newMessage = {
                 profileImage: 'img/profile/1.png',
                 text: message,
-                sender: true,
+                sender: false,
             };
             setMessages((messages) => messages.concat([newMessage]));
         })

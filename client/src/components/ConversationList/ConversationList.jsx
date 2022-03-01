@@ -2,7 +2,7 @@ import React from 'react';
 import Conversation from '../Conversation/Conversation';
 import './ConversationList.css';
 
-const ConversationList = ({ friendList , socket, handleConversationChange }) => {
+const ConversationList = ({ conversationList , socket, handleConversationChange }) => {
 
     function joinNewConversation(selfProfileID, conversationID) {
         const newRoomInfo = {
@@ -12,10 +12,9 @@ const ConversationList = ({ friendList , socket, handleConversationChange }) => 
         socket.emit('joinNewRoom', newRoomInfo);
         handleConversationChange(conversationID);
     }
-
-    const conversations = friendList.map((friend) => {
+    const conversations = conversationList.map((conversation) => {
         return (
-            <Conversation profile={friend.profile} key={friend.key} conversationID={friend.key} handleJoinRoomRequest={joinNewConversation}/>
+            <Conversation profile={conversation.name} key={conversation._id} conversationID={conversation._id} handleJoinRoomRequest={joinNewConversation}/>
         );
     });
     return (

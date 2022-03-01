@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const ConversationHistory = require('./ConversationHistory');
+const User = require('./User');
 
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -10,14 +11,35 @@ async function getConversation(conversationId) {
     return doc;
 }
 
-async function insertNewMessage(conversationId, senderId) {
+async function getConversationsList(userId) {
+    const doc = await ConversationHistory.aggregate([
+        {
+            $match: {
+                members: {
+                    $in: [ObjectId(userId)],
+                }
+            },
+        },
+        {
+            $lookup : {
+                from: 'users',
+                localField: 'members',
+                foreignField: '_id',
+                as: 'members'
+        },
+        }
+    ])
+    return doc;
+}
+
+async function insertNewMessage(conversationId, senderId, message) {
     const doc = await ConversationHistory.findOneAndUpdate(
         { _id: ObjectId(conversationId) },
         {
             $push: {
                 messages: {
                     sender: ObjectId(senderId),
-                    text: "HI",
+                    text: message,
                 },
             },
         }
@@ -27,3 +49,4 @@ async function insertNewMessage(conversationId, senderId) {
 
 exports.insertNewMessage = insertNewMessage;
 exports.getConversation = getConversation;
+exports.getConversationsList = getConversationsList;

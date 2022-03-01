@@ -1,6 +1,6 @@
 exports.friendList = [
     {
-        key: 0,
+        key: '621de97cd186e7a2485b2d33',
         profile: {
             profileImage: 'img/profile/1.png',
             profileName: 'Samin Islam'
