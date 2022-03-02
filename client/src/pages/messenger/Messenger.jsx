@@ -12,7 +12,7 @@ import './Messenger.css';
 
 const Messenger = () => {
     const [participents, setParticipents] = useState({
-        selfID: '621e4f1b5ae522446cb6f1b9',
+        selfID: window.location.pathname.toString().slice(1),
         conversationID: '621e52d5efa453256a052183',
     });
     const [conversationHistory, setConversationHistory] = useState({
@@ -32,17 +32,18 @@ const Messenger = () => {
 
     const socket = io();
     function handleConversationChange(newConversationID) {
-        // socket.emit('leaveRoom', {selfProfileID: participents.selfID, conversationID: participents.conversationID});
+        socket.emit('leaveRoom', { selfProfileID: participents.selfID, conversationID: participents.conversationID });
+        socket.emit('joinNewRoom', {conversationID: newConversationID});
+        axios.get('/conversation/' + newConversationID).then(({ data }) => {
+            setConversationHistory(data.conversation);
+        });
         setParticipents((participents) => ({
             ...participents,
             conversationID: newConversationID,
         }));
-        axios.get('/conversation/' + newConversationID).then(({ data }) => {
-            setConversationHistory(data.conversation);
-        });
     }
     useEffect(() => {
-        axios.get('/conversation/' + participents.conversationID).then(({ data }) => {
+        axios.get('/conversation/' + participents.conversationID.toString()).then(({ data }) => {
             setConversationHistory(data.conversation);
             });
     }, []);

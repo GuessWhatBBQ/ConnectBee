@@ -2,14 +2,9 @@ import React from 'react';
 import Conversation from '../Conversation/Conversation';
 import './ConversationList.css';
 
-const ConversationList = ({ conversationList , socket, handleConversationChange }) => {
+const ConversationList = ({ conversationList , handleConversationChange, participents }) => {
 
-    function joinNewConversation(selfProfileID, conversationID) {
-        const newRoomInfo = {
-            selfProfileID,
-            conversationID,
-        };
-        socket.emit('joinNewRoom', newRoomInfo);
+    function joinNewConversation(conversationID) {
         handleConversationChange(conversationID);
     }
     const conversations = conversationList.map((conversation) => {

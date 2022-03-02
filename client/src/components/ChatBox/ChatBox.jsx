@@ -29,30 +29,28 @@ function ChatBox ({ conversationHistory, socket, participents }) {
     });
     const createNewMessage = (text) => {
         const newMessage = {
-            profileImage: 'img/profile/1.png',
             text: text,
-            sender: true,
+            sender: participents.selfID,
         };
         socket.emit("newMessageSent", {selfProfileID: participents.selfID, conversationID: participents.conversationID, message: text});
         setMessages((messages) => messages.concat([newMessage]));
     }
     useEffect(() => {
         socket.on('newMessageReceived', ({ senderProfileID, message }) => {
-            // Hacky fix for sent message reemitted to self
-            // if (senderProfileID === participents.selfID) {
-            //     return;
-            // }
+            console.log(message);
+            if (senderProfileID === participents.selfID) {
+                return;
+            }
             const newMessage = {
-                profileImage: 'img/profile/1.png',
                 text: message,
-                sender: false,
+                sender: senderProfileID,
             };
             setMessages((messages) => messages.concat([newMessage]));
-        })
+        });
     }, []);
     useEffect(() => {
         setMessages(conversationHistory);
-    }, [participents])
+    }, [participents]);
     return (
         <div className="chatbox">
           {mess}

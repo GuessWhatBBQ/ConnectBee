@@ -42,17 +42,22 @@ function generateRoomID(id) {
 }
 
 io.on("connection", (socket) => {
+    socket.join("1");
     socket.on("newMessageSent",({ selfProfileID, conversationID, message }) => {
-        socket.to(generateRoomID(conversationID)).emit("newMessageReceived", { senderProfileID: selfProfileID, message });
-        console.log("hihi")
-        ConversationHistoryModel.insertNewMessage(conversationID, selfProfileID, message);
+        const roomID = generateRoomID(conversationID);
+        // console.log(io.in(conversationID).allSockets());
+        socket.to(conversationID).emit("newMessageReceived", { senderProfileID: selfProfileID, message });
+        socket.to("1").emit("newMessageReceived", { senderProfileID: selfProfileID, message });
+        // console.log("message ", message, "sent to " + roomID);
+        ConversationHistoryModel.insertNewMessage(conversationID.toString(), selfProfileID.toString(), message);
     });
-    socket.on("joinNewRoom", ({ selfProfileID }) => {
-        const roomID = generateRoomID(selfProfileID);
-        socket.join(roomID);
+    socket.on("joinNewRoom", ({ conversationID }) => {
+        const roomID = generateRoomID(conversationID);
+        // console.log("Room joined: " + conversationID)
+        socket.join(conversationID);
     });
     socket.on("leaveRoom", ({selfProfileID, conversationID}) => {
-        socket.leave(generateRoomID(selfProfileID));
+        socket.leave(conversationID);
     });
 });
 
