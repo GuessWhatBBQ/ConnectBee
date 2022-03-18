@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import io from "socket.io-client";
 
 import ConversationList from '../../components/ConversationList/ConversationList';
 import ChatBox from '../../components/ChatBox/ChatBox';
 
-import { conversations } from './DummyData';
-// import { conversationHistory } from './DummyData';
-import io from "socket.io-client";
-
 import './Messenger.css';
+
+const socket = io();
 
 const Messenger = () => {
     const [participents, setParticipents] = useState({
         selfID: window.location.pathname.toString().slice(1),
-        conversationID: '621e52d5efa453256a052183',
+        conversationID: '0',
     });
     const [conversationHistory, setConversationHistory] = useState({
         _id: "0",
@@ -30,28 +29,25 @@ const Messenger = () => {
         creationDate: "",
     }]);
 
-    const socket = io();
     function handleConversationChange(newConversationID) {
         socket.emit('leaveRoom', { selfProfileID: participents.selfID, conversationID: participents.conversationID });
         socket.emit('joinNewRoom', {conversationID: newConversationID});
         axios.get('/conversation/' + newConversationID).then(({ data }) => {
             setConversationHistory(data.conversation);
+            setParticipents((participents) => ({
+                ...participents,
+                conversationID: newConversationID,
+            }));
         });
-        setParticipents((participents) => ({
-            ...participents,
-            conversationID: newConversationID,
-        }));
     }
-    useEffect(() => {
-        axios.get('/conversation/' + participents.conversationID.toString()).then(({ data }) => {
-            setConversationHistory(data.conversation);
-            });
-    }, []);
+
     useEffect(() => {
         axios.get('/conversations/' + participents.selfID).then(({ data }) => {
             setConversationList(data.conversation);
+            handleConversationChange(data.conversation[0]._id);
         });
     }, []);
+
     return (
         <div className='messenger'>
             <ConversationList conversationList={conversationList} socket={socket} participents={participents} handleConversationChange={handleConversationChange}/>

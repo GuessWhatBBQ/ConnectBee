@@ -42,13 +42,9 @@ function generateRoomID(id) {
 }
 
 io.on("connection", (socket) => {
-    socket.join("1");
     socket.on("newMessageSent",({ selfProfileID, conversationID, message }) => {
         const roomID = generateRoomID(conversationID);
-        // console.log(io.in(conversationID).allSockets());
         socket.to(conversationID).emit("newMessageReceived", { senderProfileID: selfProfileID, message });
-        socket.to("1").emit("newMessageReceived", { senderProfileID: selfProfileID, message });
-        // console.log("message ", message, "sent to " + roomID);
         ConversationHistoryModel.insertNewMessage(conversationID.toString(), selfProfileID.toString(), message);
     });
     socket.on("joinNewRoom", ({ conversationID }) => {
@@ -60,5 +56,23 @@ io.on("connection", (socket) => {
         socket.leave(conversationID);
     });
 });
+
+// Debugging code for socket connection
+
+// io.of("/").adapter.on("create-room", (room) => {
+//     console.log(`room ${room} was created`);
+// });
+
+// io.of("/").adapter.on("delete-room", (room) => {
+//     console.log(`room ${room} was deleted`);
+// });
+
+// io.of("/").adapter.on("join-room", (room, id) => {
+//     console.log(`socket ${id} has joined room ${room}`);
+// });
+
+// io.of("/").adapter.on("leave-room", (room, id) => {
+//     console.log(`socket ${id} has left room ${room}`);
+// });
 
 httpServer.listen(5000);
