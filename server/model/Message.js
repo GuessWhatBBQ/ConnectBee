@@ -5,6 +5,11 @@ const User = require('./User');
 const ObjectId = mongoose.Types.ObjectId;
 
 async function getConversation(conversationId) {
+    try {
+        ObjectId(conversationId);
+    } catch (err) {
+        return [];
+    }
     const doc = await ConversationHistory.findOne({
         _id: ObjectId(conversationId)
     })
@@ -12,6 +17,11 @@ async function getConversation(conversationId) {
 }
 
 async function getConversationsList(userId) {
+    try {
+        ObjectId(userId);
+    } catch (err) {
+        return [];
+    }
     const doc = await ConversationHistory.aggregate([
         {
             $match: {
