@@ -1,0 +1,115 @@
+.topBarContainer {
+	height: 50px;
+	width: 100%;
+	background-color: #ffea00;
+	/* background-color: #eeba0b; */
+
+	display: flex;
+	align-items: center;
+	position: sticky;
+	top: 0;
+	z-index: 999;
+}
+.topBarLeft {
+	flex: 3;
+	display: flex;
+	align-items: center;
+}
+.topBarLogoIcon {
+	height: 24px;
+	width: 24px;
+	margin-left: 12px;
+}
+.topBarLeft .topBarLogoText {
+	font-size: 24px;
+	margin-left: 18px;
+	font-weight: bold;
+	color: black;
+	cursor: pointer;
+}
+.topBarCenter {
+	flex: 5;
+}
+.topsearchbar {
+	width: 80%;
+	height: 30px;
+	background-color: white;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+}
+.topsearchbar .searchIcon {
+	font-size: 20px !important;
+	margin-top: 2px;
+	margin-left: 10px;
+}
+.topsearchbar .searchInput {
+	width: 75%;
+	border: none;
+}
+.topsearchbar .searchInput:focus {
+	outline: none;
+}
+.topBarRight {
+	flex: 4;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+.topBarLinks {
+	display: flex;
+	justify-content: space-between;
+}
+.topBarLink {
+	margin-right: 10px;
+	cursor: pointer;
+}
+.topBarIcons {
+	display: flex;
+	justify-content: space-around;
+}
+.topBarIconItem {
+	position: relative;
+	margin-right: 15px;
+	margin-top: 6px;
+	cursor: pointer;
+}
+.topBarIconItemBadge {
+	height: 15px;
+	width: 15px;
+	position: absolute;
+	top: -5px;
+	right: -5px;
+	color: white;
+	background-color: red;
+	font: 12px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.noselect {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Old versions of Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+.topBarUserSection {
+	display: flex;
+}
+.topBarUserSection .topBarImg {
+	height: 35px;
+	width: 35px;
+	border-radius: 50%;
+	object-fit: cover;
+	cursor: pointer;
+}
+.topBarUserSection .profileName {
+	font-weight: 600;
+	cursor: pointer;
+	margin-top: 7px;
+	margin-right: 6px;
+}
