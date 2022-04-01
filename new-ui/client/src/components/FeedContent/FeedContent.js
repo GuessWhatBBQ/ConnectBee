@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "./feedContent.css";
-import { MoreVert } from "@mui/icons-material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import moment from "moment";
+
+import { deletePost, likePost } from "../../actions/posts";
+import { useDispatch } from "react-redux";
 
 // import { Users } from "../dummydata";
 
@@ -19,7 +22,7 @@ export default function FeedContent({ content, post, setCurrentId }) {
 	// 	}
 	// }
 
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
 	return (
 		<div className="content">
 			<div className="contentWrapper">
@@ -37,7 +40,11 @@ export default function FeedContent({ content, post, setCurrentId }) {
 						<span className="postTime">{moment(post.createdAt).fromNow()}</span>
 					</div>
 					<div className="contentTopRight">
-						<MoreVert />
+						<DeleteIcon
+							onClick={() => {
+								dispatch(deletePost(post._id));
+							}}
+						/>
 					</div>
 				</div>
 				<div className="contentCenter">
@@ -50,15 +57,21 @@ export default function FeedContent({ content, post, setCurrentId }) {
 							className="likeIcon"
 							src="assets/like.png"
 							alt=""
-							// onClick={likeHandler}
+							onClick={() => {
+								dispatch(likePost(post._id));
+							}}
 						/>
 						<img
 							className="likeIcon"
 							src="assets/heart.png"
 							alt=""
-							// onClick={likeHandler}
+							onClick={() => {
+								dispatch(likePost(post._id));
+							}}
 						/>
-						<span className="contentLikeCounter">$number people like it</span>
+						<span className="contentLikeCounter">
+							{post.likeCount} people like it
+						</span>
 					</div>
 					<div className="contentBottomRight">
 						<span className="contentCommentText">$number comments</span>

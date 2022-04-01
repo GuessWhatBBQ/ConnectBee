@@ -116,6 +116,7 @@ function Form({ currentId, setCurrentId }) {
 							<span className="postOptionText">
 								Add Photo
 								<FileBase
+									_id="filebase"
 									type="file"
 									multiple={false}
 									onDone={({ base64 }) =>
