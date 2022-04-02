@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Urbanist');
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Urbanist';
+}
+
+body {
+    background-color: #FFF275;
+}
+
+.messenger {
+    display: flex;
+    /* background: black; */
+}

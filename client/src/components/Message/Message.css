@@ -1,0 +1,41 @@
+.message-profile-image {
+    display: block;
+    max-width:30px;
+    max-height:30px;
+    width: auto;
+    height: auto;
+    border-radius: 50%;
+}
+
+.message {
+    max-width: 20vw;
+    text-align: center;
+    display: flex;
+    margin: 2px;
+}
+
+.message .message-text {
+    text-align: center;
+    height: auto;
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.sender {
+    align-self: flex-start;
+    /* flex: 50%; */
+}
+
+.sender .message-text {
+    background-color: #ffae00;
+}
+
+.receiver {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+    /* flex: 50%; */
+}
+
+.receiver .message-text {
+    background-color: #FF8C42;
+}
