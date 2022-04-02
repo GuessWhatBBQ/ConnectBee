@@ -22,6 +22,28 @@
 	display: flex;
 	align-items: center;
 }
+.contentTopRight {
+	position: relative;
+}
+.modal {
+	position: absolute;
+	top: 40;
+	right: 0;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s, opacity 0.4s;
+}
+.modalAcitve {
+	background-color: #fff8c7;
+	visibility: visible;
+	opacity: 1;
+}
+.modal-row {
+	width: 80px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
 
 .contentProfileImg {
 	width: 32px;

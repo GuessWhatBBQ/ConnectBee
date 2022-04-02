@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./feedContent.css";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import moment from "moment";
 
 import { deletePost, likePost } from "../../actions/posts";
@@ -22,6 +24,16 @@ export default function FeedContent({ content, post, setCurrentId }) {
 	// 	}
 	// }
 
+	function hideModal(id) {
+		document.getElementById(`${id}`).classList.hide("modalAcitve");
+	}
+
+	function toggleModal(id) {
+		document.getElementById(id).classList.toggle("modalAcitve");
+		setTimeout(hideModal(id), 1000);
+		// clearTimeout(myTimeout);
+	}
+
 	const dispatch = useDispatch();
 	return (
 		<div className="content">
@@ -40,11 +52,27 @@ export default function FeedContent({ content, post, setCurrentId }) {
 						<span className="postTime">{moment(post.createdAt).fromNow()}</span>
 					</div>
 					<div className="contentTopRight">
-						<DeleteIcon
-							onClick={() => {
-								dispatch(deletePost(post._id));
-							}}
-						/>
+						<MoreHorizIcon
+							onClick={() => toggleModal(post._id)}
+						></MoreHorizIcon>
+						<div id={post._id} className="modal">
+							<div className="modal-row">
+								Edit
+								<EditIcon
+									onClick={() => {
+										setCurrentId(post._id);
+									}}
+								/>
+							</div>
+							<div className="modal-row">
+								Delete
+								<DeleteIcon
+									onClick={() => {
+										dispatch(deletePost(post._id));
+									}}
+								/>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div className="contentCenter">
