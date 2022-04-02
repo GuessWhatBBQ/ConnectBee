@@ -87,13 +87,6 @@ function Form({ currentId, setCurrentId }) {
 	// 		</form>
 	// 	</Paper>
 	// );
-
-	var loadFile = function (event) {
-		setPostData({
-			...postData,
-			selectedFile: URL.createObjectURL(event.target.files[0]),
-		});
-	};
 	return (
 		<div className="post">
 			<div className="postWrapper">
