@@ -1,12 +1,25 @@
-const express = require("express");
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import bodyParser from "body-parser";
+import dotenv from "dotenv";
+import postRoutes from "./routes/posts.js";
+import userRoutes from "./routes/users.js";
 const { createServer } = require("http");
 const { Server } = require("socket.io");
-const mongoose = require("mongoose");
 
-const ConversationHistoryModel = require("./model/Message")
+const ConversationHistoryModel = require("./model/Message");
+
+const PORT = process.env.PORT || 5000;
 
 const app = express();
-mongoose.connect('mongodb://127.0.0.1:27017/connectbee');
+dotenv.config();
+
+app.use(cors());
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use("/posts", postRoutes);
+app.use("/users", userRoutes);
 
 app.get('/conversation/:conversationId', async (req, res) => {
     let conversation = await ConversationHistoryModel.getConversation(req.params.conversationId).then((doc) => doc.toObject());
@@ -23,7 +36,7 @@ app.get('/conversations/:userId', async (req, res) => {
     let conversation = await ConversationHistoryModel.getConversationsList(req.params.userId).then((doc) => doc);
     conversation = conversation.map((convo) => {
         const {first, last} = convo.members.find((mem) => {
-            return mem._id.toString() !== req.params.userId
+            return mem._id.toString() !== req.params.userId;
         }).name;
         convo.name = first + ' ' + last;
         return convo;
@@ -37,19 +50,12 @@ app.get('/conversations/:userId', async (req, res) => {
 const httpServer = createServer(app);
 const io = new Server(httpServer);
 
-function generateRoomID(id) {
-    return '' + id;
-}
-
 io.on("connection", (socket) => {
     socket.on("newMessageSent",({ selfProfileID, conversationID, message }) => {
-        const roomID = generateRoomID(conversationID);
         socket.to(conversationID).emit("newMessageReceived", { senderProfileID: selfProfileID, message });
         ConversationHistoryModel.insertNewMessage(conversationID.toString(), selfProfileID.toString(), message);
     });
     socket.on("joinNewRoom", ({ conversationID }) => {
-        const roomID = generateRoomID(conversationID);
-        // console.log("Room joined: " + conversationID)
         socket.join(conversationID);
     });
     socket.on("leaveRoom", ({selfProfileID, conversationID}) => {
@@ -57,22 +63,13 @@ io.on("connection", (socket) => {
     });
 });
 
-// Debugging code for socket connection
-
-// io.of("/").adapter.on("create-room", (room) => {
-//     console.log(`room ${room} was created`);
-// });
-
-// io.of("/").adapter.on("delete-room", (room) => {
-//     console.log(`room ${room} was deleted`);
-// });
-
-// io.of("/").adapter.on("join-room", (room, id) => {
-//     console.log(`socket ${id} has joined room ${room}`);
-// });
-
-// io.of("/").adapter.on("leave-room", (room, id) => {
-//     console.log(`socket ${id} has left room ${room}`);
-// });
-
-httpServer.listen(5000);
+mongoose
+  .connect(process.env.CONNECTION_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    httpServer.listen(PORT);
+    console.log(`Server running on port ${PORT}`);
+  })
+  .catch((error) => console.log(error.message));
