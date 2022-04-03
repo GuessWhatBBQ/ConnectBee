@@ -145,3 +145,4 @@ dist
 
 .projectile
 *~undo-tree~
+.#*

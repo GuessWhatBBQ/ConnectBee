@@ -5,10 +5,10 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/users.js";
-const { createServer } = require("http");
-const { Server } = require("socket.io");
+import { createServer } from "http";
+import { Server } from "socket.io";
 
-const ConversationHistoryModel = require("./model/Message");
+import * as ConversationHistoryModel from "./model/Message.js";
 
 const PORT = process.env.PORT || 5000;
 
