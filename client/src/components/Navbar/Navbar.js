@@ -1,88 +1,49 @@
-import React, { useState, useEffect } from "react";
-
-import { AppBar, Avatar, Button, Toolbar, Typography } from "@material-ui/core";
-import { useDispatch } from "react-redux";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import decode from "jwt-decode";
-import useStyles from "./styles";
-import logo from "../images/1.png";
+import React from "react";
+import "./navbar.css";
+import { Search, Person, Chat, Notifications } from "@mui/icons-material";
 
 const Navbar = () => {
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
-
-  const logout = () => {
-    dispatch({ type: "LOGOUT" });
-    navigate("/auth");
-    setUser(null);
-  };
-  useEffect(() => {
-    const token = user?.token;
-    if (token) {
-      const decodedToken = decode(token);
-      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
-    }
-
-    setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [location]);
-  return (
-    <AppBar position="static" color="inherit" className={classes.appBar}>
-      <div className={classes.brandContainer}>
-        <img
-          className={classes.image}
-          src={logo}
-          alt="ConnectBeeLogo"
-          height="85"
-          width="85"
-        />
-        <Typography
-          component={Link}
-          to="/"
-          className={classes.heading}
-          variant="h2"
-        >
-          ConnectBee
-        </Typography>
-      </div>
-      <Toolbar className={classes.Toolbar}>
-        {user ? (
-          <div className={classes.profile}>
-            <Avatar
-              className={classes.purple}
-              alt={user.result.name}
-              src={user.result.imageUrl}
-            >
-              {" "}
-              {user.result.name.charAt(0)}
-            </Avatar>
-            <Typography className={classes.userName} variant="h6">
-              {user.result.name}
-            </Typography>
-            <Button
-              variant="contained"
-              className={classes.logout}
-              color="secondary"
-              onClick={logout}
-            >
-              Logout
-            </Button>
-          </div>
-        ) : (
-          <Button
-            component={Link}
-            to="/auth"
-            variant="contained"
-            className={classes.signInButton}
-          >
-            Sign In
-          </Button>
-        )}
-      </Toolbar>
-    </AppBar>
-  );
+	return (
+		<div className="topBarContainer">
+			<div className="topBarLeft">
+				<img src="./assets/logo.png" alt="" className="topBarLogoIcon" />
+				<span className="topBarLogoText">ConnectBee</span>
+			</div>
+			<div className="topBarCenter">
+				<div className="topsearchbar">
+					<Search className="searchIcon"></Search>
+					<input
+						placeholder="search for friends, places or profiles"
+						className="searchInput"
+					/>
+				</div>
+			</div>
+			<div className="topBarRight">
+				<div className="topBarLinks">
+					<span className="topBarLink">Home</span>
+					<span className="topBarLink">Timeline</span>
+				</div>
+				<div className="topBarIcons">
+					<div className="topBarIconItem">
+						<Person></Person>
+						<span className="topBarIconItemBadge noselect">1</span>
+					</div>
+					<div className="topBarIconItem">
+						<Chat></Chat>
+						<span className="topBarIconItemBadge noselect">2</span>
+					</div>
+					<div className="topBarIconItem">
+						<Notifications></Notifications>
+						<span className="topBarIconItemBadge noselect">1</span>
+					</div>
+				</div>
+				<div className="topBarUserSection">
+					<span className="profileName">Arafat</span>
+					<img className="topBarImg" src="assets/person/1.jpeg" alt="" />
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default Navbar;
