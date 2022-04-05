@@ -3,9 +3,9 @@ import { Container } from "@material-ui/core";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar";
-import Home from "./components/Home/Home";
-import Auth from "./components/Auth/Auth";
-import Messenger from './pages/messenger/Messenger';
+import Home from "./pages/Home/Home";
+import Auth from "./pages/Auth/Auth";
+import Messenger from './pages/Messenger/Messenger';
 
 function App() {
   return (

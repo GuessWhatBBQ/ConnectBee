@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 
 import { getPosts } from "../../actions/posts";
 
-import Leftbar from "../Leftbar/Leftbar";
-import Feed from "../Feed/Feed";
-import Rightbar from "../Rightbar/Rightbar";
+import Leftbar from "../../components/Leftbar/Leftbar";
+import Feed from "../../components/Feed/Feed";
+import Rightbar from "../../components/Rightbar/Rightbar";
 
 import "./home.css";
 
