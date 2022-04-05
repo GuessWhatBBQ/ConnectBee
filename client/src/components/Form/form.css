@@ -1,6 +1,89 @@
 ::-webkit-file-upload-button {
-  background: black;
-  color: #ffea00;
-  padding: 0.3em;
-  font-size: large;
+	background: black;
+	color: #ffea00;
+	padding: 0.3em;
+	font-size: large;
+	display: none;
+}
+
+.post {
+	width: 100%;
+	height: 170px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+	box-shadow: 4px 5px 6px -8px rgba(0, 0, 0, 0.68);
+}
+
+.postWrapper {
+	margin: 10px 0 0 10px;
+	padding: 10px;
+	padding-top: 15px;
+}
+
+.postTop {
+	display: flex;
+	align-items: center;
+}
+
+.postProfileImg {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-right: 10px;
+}
+
+.postInput {
+	border: none;
+	width: 80%;
+}
+
+.postInput:focus {
+	outline: none;
+}
+
+.postHr {
+	margin: 20px;
+}
+
+.postBottom {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.postOptions {
+	display: flex;
+	margin-left: 20px;
+}
+
+.postOption {
+	display: flex;
+	align-items: center;
+	margin-right: 15px;
+	cursor: pointer;
+}
+
+.postIcon {
+	font-size: 18px;
+	margin-right: 3px;
+}
+
+.postOptionText {
+	font-size: 14px;
+	font-weight: 500;
+}
+.postOptionText input {
+	/* display: none; */
+}
+
+.shareButton {
+	border: none;
+	padding: 7px;
+	border-radius: 5px;
+	background-color: #f4e409;
+	font-weight: 600;
+	margin-right: 20px;
+	cursor: pointer;
+	color: black;
 }
