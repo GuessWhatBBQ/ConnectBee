@@ -1,0 +1,48 @@
+.rightbar {
+	flex: 3;
+	height: calc(100vh - 50px);
+	/* overflow-y: scroll; */
+	position: sticky;
+	top: 50px;
+	background-color: #fff8c7;
+	margin-left: 8px;
+}
+.rightbarWrapper {
+	padding: 10px 10px 0 20px;
+	/* margin-left: 3%; */
+}
+.rightbarTitle {
+	margin-bottom: 10px;
+}
+
+.rightbarFriendList {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.rightbarFriend {
+	display: flex;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+.rightbarProfileImgContainer {
+	margin-right: 10px;
+	position: relative;
+}
+.rightbarProfileImg {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+.rightbarOnline {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background-color: limegreen;
+	border: 2px solid white;
+	position: absolute;
+	right: 0;
+	top: -2px;
+}

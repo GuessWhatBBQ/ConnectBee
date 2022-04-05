@@ -1,10 +1,9 @@
-const mongoose = require('mongoose');
-const ConversationHistory = require('./ConversationHistory');
-const User = require('./User');
+import mongoose from "mongoose";
+import * as ConversationHistory from './ConversationHistory.js';
 
 const ObjectId = mongoose.Types.ObjectId;
 
-async function getConversation(conversationId) {
+export const getConversation = async (conversationId) => {
     try {
         ObjectId(conversationId);
     } catch (err) {
@@ -16,7 +15,7 @@ async function getConversation(conversationId) {
     return doc;
 }
 
-async function getConversationsList(userId) {
+export const getConversationsList = async (userId) => {
     try {
         ObjectId(userId);
     } catch (err) {
@@ -42,7 +41,7 @@ async function getConversationsList(userId) {
     return doc;
 }
 
-async function insertNewMessage(conversationId, senderId, message) {
+export const insertNewMessage = async (conversationId, senderId, message) => {
     const doc = await ConversationHistory.findOneAndUpdate(
         { _id: ObjectId(conversationId) },
         {
@@ -57,6 +56,3 @@ async function insertNewMessage(conversationId, senderId, message) {
     doc.save();
 }
 
-exports.insertNewMessage = insertNewMessage;
-exports.getConversation = getConversation;
-exports.getConversationsList = getConversationsList;

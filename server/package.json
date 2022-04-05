@@ -3,13 +3,19 @@
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js"
   },
-  "author": "Md Samin Yasar Islam",
+  "keywords": [],
+  "author": "",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "dotenv": "^14.3.2",
+    "jsonwebtoken": "^8.5.1",
     "express": "^4.17.3",
     "mongoose": "^6.2.4",
     "socket.io": "^4.4.1"
