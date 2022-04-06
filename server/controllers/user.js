@@ -1,7 +1,8 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-import User from "../models/user.js";
+import User from "../models/userSchema.js";
+import { addFriendToUser } from "../models/user.js";
 
 export const signin = async (req, res) => {
   const { email, password } = req.body;
@@ -51,3 +52,11 @@ export const signup = async (req, res) => {
     res.status(500).json({ message: "Something went wrong" });
   }
 };
+export const addFriend = async (req, res) => {
+  const { userId, friendId } = req.body;
+  try {
+    addFriendToUser(userId, friendId);
+  } catch (err) {
+    res.status(500).json({ message: "Something went wrong" });
+  }
+}
