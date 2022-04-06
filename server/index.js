@@ -5,10 +5,11 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/users.js";
+import conversationRoutes from "./routes/conversations.js";
 import { createServer } from "http";
 import { Server } from "socket.io";
 
-import * as ConversationHistoryModel from "./model/Message.js";
+import { insertNewMessage } from "./models/message.js";
 
 const PORT = process.env.PORT || 5000;
 
@@ -18,34 +19,10 @@ dotenv.config();
 app.use(cors());
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+
 app.use("/posts", postRoutes);
 app.use("/users", userRoutes);
-
-app.get('/conversation/:conversationId', async (req, res) => {
-    let conversation = await ConversationHistoryModel.getConversation(req.params.conversationId).then((doc) => doc.toObject());
-    if (conversation.members) {
-        delete conversation.members;
-    };
-    res.json({
-        status: 'ok',
-        conversation,
-    });
-})
-
-app.get('/conversations/:userId', async (req, res) => {
-    let conversation = await ConversationHistoryModel.getConversationsList(req.params.userId).then((doc) => doc);
-    conversation = conversation.map((convo) => {
-        const {first, last} = convo.members.find((mem) => {
-            return mem._id.toString() !== req.params.userId;
-        }).name;
-        convo.name = first + ' ' + last;
-        return convo;
-    })
-    res.json({
-        status: 'ok',
-        conversation,
-    });
-})
+app.get("/conversations", conversationRoutes);
 
 const httpServer = createServer(app);
 const io = new Server(httpServer);
@@ -53,7 +30,7 @@ const io = new Server(httpServer);
 io.on("connection", (socket) => {
     socket.on("newMessageSent",({ selfProfileID, conversationID, message }) => {
         socket.to(conversationID).emit("newMessageReceived", { senderProfileID: selfProfileID, message });
-        ConversationHistoryModel.insertNewMessage(conversationID.toString(), selfProfileID.toString(), message);
+        insertNewMessage(conversationID.toString(), selfProfileID.toString(), message);
     });
     socket.on("joinNewRoom", ({ conversationID }) => {
         socket.join(conversationID);

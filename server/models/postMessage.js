@@ -1,14 +1,13 @@
 import mongoose from "mongoose";
 
+const ObjectId = mongoose.Schema.Types.ObjectId;
 const postSchema = mongoose.Schema({
-  title: String,
-  message: String,
-  name: String,
-  creator: String,
+  caption: String,
+  creator: ObjectId,
   tags: [String],
-  selectedFile: String,
+  selectedFile: [String],
   likes: {
-    type: [String],
+    type: [ObjectId],
     default: [],
   },
   createdAt: {

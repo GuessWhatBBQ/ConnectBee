@@ -146,3 +146,4 @@ dist
 .projectile
 *~undo-tree~
 .#*
+.dir-locals.el

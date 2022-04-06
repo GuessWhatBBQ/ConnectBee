@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import * as ConversationHistory from './ConversationHistory.js';
+import * as ConversationHistory from './conversationSchema.js';
 
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -15,7 +15,7 @@ export const getConversation = async (conversationId) => {
     return doc;
 }
 
-export const getConversationsList = async (userId) => {
+export const getConversationList = async (userId) => {
     try {
         ObjectId(userId);
     } catch (err) {
