@@ -22,6 +22,10 @@ const userSchema = mongoose.Schema({
       default: new Date(),
     }
   }],
+  friendRequests: [{
+    sender: ObjectId,
+    approved: Boolean
+  }],
   createdAt: {
     type: Date,
     default: new Date(),
