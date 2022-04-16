@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import Leftbar from "../../components/Leftbar/Leftbar";
@@ -14,9 +14,12 @@ import './Search.css';
 
 const Search = ({}) => {
   const dispatch = useDispatch();
+  const profile = useSelector(state => state.auth);
   const { query } = useParams();
   useEffect(() => {
-    dispatch(fetchUserSearch(query));
+    if (profile) {
+      dispatch(fetchUserSearch(profile.authData.result._id, query));
+    }
   }, [dispatch]);
   return (
     <div className='search'>
