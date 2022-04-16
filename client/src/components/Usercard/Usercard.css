@@ -1,0 +1,18 @@
+.usercard {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	height: 100px;
+	margin-top: 15px;
+	padding: 0 18px;
+	background-color: rgb(184, 184, 184);
+	border-radius: 10px;
+}
+.userInfo {
+	display: flex;
+	align-items: center;
+}
+.userInfoProfilePicture {
+	margin-right: 3px;
+}

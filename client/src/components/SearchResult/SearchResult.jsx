@@ -1,20 +1,33 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-
+import React from "react";
+import { useSelector } from "react-redux";
+import "./SearchResult.css";
 import Usercard from "../Usercard/Usercard";
 
 const SearchResult = () => {
-  const userSearchResult = useSelector(state => state.search);
-  console.log(userSearchResult);
-  return (
-    <div>
-      {
-        userSearchResult.map((user) => {
-          return <Usercard key={user._id} profilePic={user.profilePic} name={user.name} />;
-        })
-      }
-    </div>
-  );
+	const userSearchResult = useSelector((state) => state.search);
+	console.log(userSearchResult);
+	const mutualFriends = [
+		{ key: 1, profilePic: "../../../public/img/profile/1.png", name: "user1" },
+		{ key: 2, profilePic: "../../../public/img/profile/2.png", name: "user2" },
+		{ key: 3, profilePic: "../../../public/img/profile/3.png", name: "user3" },
+		{ key: 4, profilePic: "../../../public/img/profile/4.png", name: "user4" },
+	];
+	return (
+		<div className="search-result">
+			{userSearchResult.map((user) => {
+				return (
+					<div>
+						<Usercard
+							key={user._id}
+							profilePic={user.profilePic}
+							name={user.name}
+							mutualFriends={mutualFriends}
+						/>
+					</div>
+				);
+			})}
+		</div>
+	);
 };
 
 export default SearchResult;
