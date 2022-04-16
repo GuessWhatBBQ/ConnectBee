@@ -7,10 +7,7 @@ const Usercard = ({ profilePic, name, mutualFriends }) => {
 	return (
 		<div className="usercard">
 			<div className="userInfo">
-				<img
-					className="userInfoProfilePicture"
-					src={mutualFriends[0].profilePic}
-				/>
+				<img className="userInfoProfilePicture" src="./1.png" />
 				<span className="userInfoProfileName">{name}</span>
 			</div>
 			<PersonAddIcon />

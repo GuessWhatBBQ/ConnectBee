@@ -7,10 +7,10 @@ const SearchResult = () => {
 	const userSearchResult = useSelector((state) => state.search);
 	console.log(userSearchResult);
 	const mutualFriends = [
-		{ key: 1, profilePic: "../../../public/img/profile/1.png", name: "user1" },
-		{ key: 2, profilePic: "../../../public/img/profile/2.png", name: "user2" },
-		{ key: 3, profilePic: "../../../public/img/profile/3.png", name: "user3" },
-		{ key: 4, profilePic: "../../../public/img/profile/4.png", name: "user4" },
+		{ key: 1, profilePic: "./img/profile/1.png", name: "user1" },
+		{ key: 2, profilePic: "./img/profile/2.png", name: "user2" },
+		{ key: 3, profilePic: "./img/profile/3.png", name: "user3" },
+		{ key: 4, profilePic: "./img/profile/4.png", name: "user4" },
 	];
 	return (
 		<div className="search-result">
