@@ -12,6 +12,7 @@ API.interceptors.request.use((req) => {
 });
 
 export const fetchPosts = (userId) => API.get(`/posts/${userId}`);
+export const fetchUserSearch = (userId, searchStr) => API.get(`/api/search/user`, { params: { searchStr, userId } });
 export const createPosts = (newPost) => API.post("/posts", newPost);
 export const updatePost = (id, updatedPost) =>
   API.patch(`/posts/${id}`, updatedPost);
