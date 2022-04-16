@@ -40,3 +40,8 @@ export const removeFriendRequest = async (userId, friendId) => {
     });
   doc.save();
 };
+
+export const getUserSearchResult = async (userId, searchStr) => {
+  const doc = await User.find();
+  return doc;
+};

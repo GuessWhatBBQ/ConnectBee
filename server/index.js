@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/users.js";
+import searchRoutes from "./routes/search.js";
 import conversationRoutes from "./routes/conversations.js";
 import { createServer } from "http";
 import { Server } from "socket.io";
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
 app.use("/posts", postRoutes);
 app.use("/users", userRoutes);
+app.use("/api/search", searchRoutes);
 app.get("/conversations", conversationRoutes);
 
 const httpServer = createServer(app);
