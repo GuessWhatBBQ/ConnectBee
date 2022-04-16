@@ -1,6 +1,9 @@
 import { AUTH, LOGOUT } from "../constants/actionTypes";
 
-const authReducer = (state = { authData: null }, action) => {
+const authReducer = (state, action) => {
+  if (typeof state === 'undefined') {
+    return { authData: JSON.parse(localStorage.getItem("profile")) };
+  }
   switch (action.type) {
     case AUTH:
       localStorage.setItem("profile", JSON.stringify({ ...action?.data }));
