@@ -7,6 +7,7 @@ import Home from "./pages/Home/Home";
 import Auth from "./pages/Auth/Auth";
 import Messenger from './pages/Messenger/Messenger';
 import Search from './pages/Search/Search';
+import Request from './pages/Request/Request';
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
           </Route>
           <Route path="/search" exact element={<Search />} >
             <Route path=":query" element={<Search />} />
+          </Route>
+          <Route path="/friends" exact element={<Request />} >
+            <Route path="request" element={<Request/>} />
           </Route>
         </Routes>
       </Container>
