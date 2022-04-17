@@ -45,3 +45,8 @@ export const getUserSearchResult = async (userId, searchStr) => {
   const doc = await User.find();
   return doc;
 };
+
+export const getUserFriendRequests = async (userId) => {
+  const doc = await User.find();
+  return doc;
+};
