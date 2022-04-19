@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 import User from "../models/userSchema.js";
-import { addFriendToUser } from "../models/user.js";
+import { addFriendToUser, removeFriendRequest } from "../models/user.js";
 
 export const signin = async (req, res) => {
   const { email, password } = req.body;
@@ -21,7 +21,7 @@ export const signin = async (req, res) => {
     const token = jwt.sign(
       { email: existingUser.email, id: existingUser._id },
       "test",
-      { expiresIn: "1h" }
+      { expiresIn: "4w" }
     );
     res.status(200).json({ result: existingUser, token });
   } catch (error) {
@@ -56,6 +56,8 @@ export const addFriend = async (req, res) => {
   const { userId, friendId } = req.body;
   try {
     addFriendToUser(userId, friendId);
+    removeFriendRequest(userId, friendId);
+    res.status(200).json({ message: "ok" });
   } catch (err) {
     res.status(500).json({ message: "Something went wrong" });
   }
