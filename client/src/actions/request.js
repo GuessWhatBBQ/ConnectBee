@@ -1,5 +1,6 @@
 import {
-  FETCH_USER_REQUEST
+  FETCH_USER_REQUEST,
+  ACCEPT_REQUEST,
 } from '../constants/actionTypes';
 import * as api from '../api';
 
@@ -9,3 +10,14 @@ export const fetchUserRequests = () => {
     dispatch({ type: FETCH_USER_REQUEST, payload: data.result.friendRequests });
   });
 };
+
+export const acceptRequest = (receiverId) => {
+  return (async (dispatch) => {
+    try {
+      const { data } = await api.acceptFriendRequest(receiverId);
+      dispatch({ type: ACCEPT_REQUEST, payload: receiverId });
+    } catch (error) {
+      console.log(error);
+    }
+  });
+}

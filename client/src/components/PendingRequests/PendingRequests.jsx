@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import Request from "../RequestCard/RequestCard";
+
+import RequestCard from "../RequestCard/RequestCard";
 
 const PendingRequests = () => {
   const userPendingRequests = useSelector(state => state.requests);
@@ -9,7 +10,7 @@ const PendingRequests = () => {
     <div>
       {
         userPendingRequests.map((request) => {
-          return <Request key={request._id} profilePic={request.profilePic} name={request.name} />;
+          return <RequestCard key={request._id} receiverId={request._id} profilePic={request.profilePic} name={request.name} />;
         })
       }
     </div>

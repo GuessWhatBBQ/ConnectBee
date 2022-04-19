@@ -7,3 +7,5 @@ export const AUTH = "AUTH";
 export const LOGOUT = "LOGOUT";
 export const FETCH_USER_SEARCH = "FETCH_USER_SEARCH";
 export const FETCH_USER_REQUEST = "FETCH_USER_REQUEST";
+export const SEND_FRIEND_REQUEST = "SEND_FRIEND_REQUEST";
+export const ACCEPT_REQUEST = "ACCEPT_REQUEST";
