@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./feedContent.css";
+import "./postContent.css";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -8,22 +8,7 @@ import moment from "moment";
 import { deletePost, likePost } from "../../actions/posts";
 import { useDispatch } from "react-redux";
 
-// import { Users } from "../dummydata";
-
 export default function FeedContent({ content, post, setCurrentId }) {
-	// const [likes, setLikes] = useState(content.like);
-	// const [liked, isLiked] = useState(false);
-
-	// function likeHandler() {
-	// 	if (liked) {
-	// 		setLikes(likes - 1);
-	// 		isLiked(false);
-	// 	} else {
-	// 		setLikes(likes + 1);
-	// 		isLiked(true);
-	// 	}
-	// }
-
 	function hideModal(id) {
 		document.getElementById(`${id}`).classList.hide("modalAcitve");
 	}

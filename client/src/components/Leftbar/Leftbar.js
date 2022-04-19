@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./leftbar.css";
 import {
 	RssFeed,
@@ -15,20 +16,44 @@ const Leftbar = () => {
 			<div className="leftbarWrapper">
 				<ul className="leftbarList">
 					<li className="leftbarListItem">
-						<RssFeed className="leftbarListItemIcon"></RssFeed>
-						<span className="leftbarListItemText">Feed</span>
+						<Link
+							className="leftbarListItem"
+							to="/"
+							style={{ color: "black", textDecoration: "none" }}
+						>
+							<RssFeed className="leftbarListItemIcon"></RssFeed>
+							<span className="leftbarListItemText">Feed</span>
+						</Link>
+					</li>
+					<li>
+						<Link
+							className="leftbarListItem"
+							to="/messenger"
+							style={{ color: "black", textDecoration: "none" }}
+						>
+							<Chat className="leftbarListItemIcon"></Chat>
+							<span className="leftbarListItemText">Chatting</span>
+						</Link>
+					</li>
+					<li>
+						<Link
+							className="leftbarListItem"
+							to="/profile"
+							style={{ color: "black", textDecoration: "none" }}
+						>
+							<Person className="leftbarListItemIcon"></Person>
+							<span className="leftbarListItemText">Profile</span>
+						</Link>
 					</li>
 					<li className="leftbarListItem">
-						<Chat className="leftbarListItemIcon"></Chat>
-						<span className="leftbarListItemText">Chatting</span>
-					</li>
-					<li className="leftbarListItem">
-						<Person className="leftbarListItemIcon"></Person>
-						<span className="leftbarListItemText">Profile</span>
-					</li>
-					<li className="leftbarListItem">
-						<People className="leftbarListItemIcon"></People>
-						<span className="leftbarListItemText">Friends</span>
+						<Link
+							className="leftbarListItem"
+							to="/friends"
+							style={{ color: "black", textDecoration: "none" }}
+						>
+							<People className="leftbarListItemIcon"></People>
+							<span className="leftbarListItemText">Friends</span>
+						</Link>
 					</li>
 					<li className="leftbarListItem">
 						<StarRate className="leftbarListItemIcon"></StarRate>

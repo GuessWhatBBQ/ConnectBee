@@ -1,18 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import FeedContent from "../FeedContent/FeedContent";
+import PostContent from "../PostContent/PostContent";
 
 function Posts({ setCurrentId }) {
 	const posts = useSelector((state) => state.posts);
 	return (
 		<>
 			{posts.map((post) => (
-				<FeedContent
+				<PostContent
 					key={post._id}
 					post={post}
 					setCurrentId={setCurrentId}
-				></FeedContent>
+				></PostContent>
 			))}
 		</>
 	);

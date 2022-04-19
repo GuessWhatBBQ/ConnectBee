@@ -2,8 +2,6 @@
 	height: 50px;
 	width: 100%;
 	background-color: #ffea00;
-	/* background-color: #eeba0b; */
-
 	display: flex;
 	align-items: center;
 	position: sticky;
@@ -28,7 +26,7 @@
 	cursor: pointer;
 }
 .topBarCenter {
-	flex: 5;
+	flex: 6;
 }
 .topsearchbar {
 	width: 80%;
@@ -44,25 +42,17 @@
 	margin-left: 10px;
 }
 .topsearchbar .searchInput {
-	width: 75%;
+	width: 95%;
 	border: none;
 }
 .topsearchbar .searchInput:focus {
 	outline: none;
 }
 .topBarRight {
-	flex: 4;
+	flex: 3;
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
-}
-.topBarLinks {
-	display: flex;
-	justify-content: space-between;
-}
-.topBarLink {
-	margin-right: 10px;
-	cursor: pointer;
 }
 .topBarIcons {
 	display: flex;
