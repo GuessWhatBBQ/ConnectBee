@@ -15,13 +15,13 @@ export const addFriendToUser = async (userId, friendId) => {
 export const insertFriendRequest = async (userId, friendId) => {
   await User.findOneAndUpdate(
     {
-      _id: userId,
-      "friendRequests.sender": { $ne: friendId },
+      _id: friendId,
+      "friendRequests.sender": { $ne: userId },
     },
     {
       $push: {
         friendRequests: {
-          sender: friendId,
+          sender: userId,
           approved: false,
         },
       },

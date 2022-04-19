@@ -5,7 +5,6 @@ import Usercard from "../Usercard/Usercard";
 
 const SearchResult = () => {
 	const userSearchResult = useSelector((state) => state.search);
-	console.log(userSearchResult);
 	const mutualFriends = [
 		{ key: 1, profilePic: "./img/profile/1.png", name: "user1" },
 		{ key: 2, profilePic: "./img/profile/2.png", name: "user2" },
@@ -19,9 +18,11 @@ const SearchResult = () => {
 					<div>
 						<Usercard
 							key={user._id}
+              userId={user._id}
 							profilePic={user.profilePic}
 							name={user.name}
 							mutualFriends={mutualFriends}
+              sent={user.sent}
 						/>
 					</div>
 				);

@@ -15,6 +15,7 @@ export const fetchPosts = () => API.get(`/posts/fetchall`);
 export const fetchUserSearch = (searchStr) => API.get(`/api/search/user`, { params: { searchStr } });
 export const fetchUserRequests = () => API.get(`/api/users/friend/request/fetchall`);
 export const acceptFriendRequest = (friendId) => API.post('/users/friend/add', { friendId });
+export const sendFriendRequest = (receiverId) => API.post('/api/users/friend/request/send', { receiverId });
 export const createPosts = (newPost) => API.post("/posts", newPost);
 export const updatePost = (id, updatedPost) =>
   API.patch(`/posts/${id}`, updatedPost);
