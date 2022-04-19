@@ -16,7 +16,9 @@ function App() {
 			<Routes>
 				<Route path="/" exact element={<Home />} />
 				<Route path="/auth" exact element={<Auth />} />
-				<Route path="/profile" exact element={<Profile />} />
+				<Route path="/profile" exact element={<Profile />} >
+          <Route path=":userId" exact element={<Profile />} />
+        </Route>
 				<Route path="/messenger" exact element={<Messenger />}>
 					<Route path=":conversationID" element={<Messenger />} />
 				</Route>

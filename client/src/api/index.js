@@ -12,6 +12,7 @@ API.interceptors.request.use((req) => {
 });
 
 export const fetchPosts = () => API.get(`/posts/fetchall`);
+export const fetchUserPosts = (userId) => API.get(`/posts/${userId}`);
 export const fetchUserSearch = (searchStr) => API.get(`/api/search/user`, { params: { searchStr } });
 export const fetchUserRequests = () => API.get(`/api/users/friend/request/fetchall`);
 export const acceptFriendRequest = (friendId) => API.post('/users/friend/add', { friendId });

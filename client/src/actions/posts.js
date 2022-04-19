@@ -1,5 +1,6 @@
 import {
   FETCH_ALL,
+  FETCH_USER_POSTS,
   UPDATE,
   CREATE,
   LIKE,
@@ -11,6 +12,15 @@ export const getPosts = () => async (dispatch) => {
   try {
     const { data } = await api.fetchPosts();
     dispatch({ type: FETCH_ALL, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getUserPosts = (userId) => async (dispatch) => {
+  try {
+    const { data } = await api.fetchUserPosts(userId);
+    console.log(data)
+    dispatch({ type: FETCH_USER_POSTS, payload: data });
   } catch (error) {
     console.log(error);
   }

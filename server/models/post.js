@@ -15,3 +15,15 @@ export const getPosts = async (userId) => {
   });
   return posts;
 };
+
+export const getUserPosts = async (userId) => {
+  try {
+    ObjectId(userId);
+  } catch (error) {
+    return [];
+  }
+  const posts = await Post.find({
+    creator: userId,
+  });
+  return posts;
+};

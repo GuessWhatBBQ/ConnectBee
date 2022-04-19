@@ -15,7 +15,7 @@ const Home = () => {
   const profile = useSelector(state => state.auth);
   useEffect(() => {
     if (profile) {
-      dispatch(getPosts(profile.authData.result._id));
+      dispatch(getPosts());
     };
   }, [dispatch, profile]);
   return (
