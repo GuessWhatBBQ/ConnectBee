@@ -1,17 +1,17 @@
-.usercard {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-
+.usercardcontainer {
 	height: 100px;
 	margin-top: 15px;
 	padding: 0 18px;
 	background-color: rgb(184, 184, 184);
 	border-radius: 10px;
 }
-.userInfo {
+.userInfoContainer {
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
+
+	height: 70%;
+	border: 1px solid red;
 }
 .userInfoProfilePicture {
 	margin-right: 15px;

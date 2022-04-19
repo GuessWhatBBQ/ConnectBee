@@ -27,12 +27,12 @@ const Leftbar = () => {
 						<span className="leftbarListItemText">Profile</span>
 					</li>
 					<li className="leftbarListItem">
-						<StarRate className="leftbarListItemIcon"></StarRate>
-						<span className="leftbarListItemText">Favourites</span>
-					</li>
-					<li className="leftbarListItem">
 						<People className="leftbarListItemIcon"></People>
 						<span className="leftbarListItemText">Friends</span>
+					</li>
+					<li className="leftbarListItem">
+						<StarRate className="leftbarListItemIcon"></StarRate>
+						<span className="leftbarListItemText">Favourites</span>
 					</li>
 					<li className="leftbarListItem">
 						<Groups className="leftbarListItemIcon"></Groups>
@@ -41,7 +41,7 @@ const Leftbar = () => {
 				</ul>
 				<button className="leftbarButton">Show More</button>
 				<hr className="leftbarHr" />
-				<ul className="leftbarFriendList">
+				{/* <ul className="leftbarFriendList">
 					<li className="leftbarFriend">
 						<img
 							src="./assets/person/7.jpeg"
@@ -146,7 +146,7 @@ const Leftbar = () => {
 						/>
 						<span className="leftbarFriendname">Jane Doe</span>
 					</li>
-				</ul>
+				</ul> */}
 			</div>
 		</div>
 	);
