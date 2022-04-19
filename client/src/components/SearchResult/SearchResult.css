@@ -1,0 +1,8 @@
+.search-result {
+	width: 70%;
+	margin: auto;
+	margin-top: 30px;
+	padding: 10px;
+	background-color: rgb(221, 221, 221);
+	border-radius: 20px;
+}
