@@ -6,6 +6,6 @@ import * as api from '../api';
 export const fetchUserRequests = () => {
   return (async (dispatch) => {
     const { data } = await api.fetchUserRequests();
-    dispatch({ type: FETCH_USER_REQUEST, payload: data.result });
+    dispatch({ type: FETCH_USER_REQUEST, payload: data.result.friendRequests });
   });
 };
