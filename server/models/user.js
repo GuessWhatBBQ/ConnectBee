@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import userSchema from "./userSchema.js";
 import User from "./userSchema.js";
 
 const ObjectId = mongoose.Types.ObjectId;
@@ -14,15 +13,20 @@ export const addFriendToUser = async (userId, friendId) => {
 };
 
 export const insertFriendRequest = async (userId, friendId) => {
-  const doc = await User.findByIdAndUpdate(userId, {
-    $addToSet: {
-      friendRequests: {
-        sender: friendId,
-        approved: false,
-      },
+  await User.findOneAndUpdate(
+    {
+      _id: userId,
+      "friendRequests.sender": { $ne: friendId },
     },
-  });
-  doc.save();
+    {
+      $push: {
+        friendRequests: {
+          sender: friendId,
+          approved: false,
+        },
+      },
+    }
+  );
 };
 
 export const removeFriendRequest = async (userId, friendId) => {
@@ -46,6 +50,7 @@ export const getUserFriendRequests = async (userId) => {
     {
       $match: {
         _id: ObjectId(userId),
+        "friendRequests.approved": false,
       },
     },
     {
@@ -63,7 +68,7 @@ export const getUserFriendRequests = async (userId) => {
         "friendRequests.friends": 1,
         "friendRequests._id": 1,
         "friendRequests.profilePicture": 1,
-        "_id": 0,
+        _id: 0,
       },
     },
   ]);
