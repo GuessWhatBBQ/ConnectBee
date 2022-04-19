@@ -6,3 +6,4 @@ export const FETCH_ALL = "FETCH_ALL";
 export const AUTH = "AUTH";
 export const LOGOUT = "LOGOUT";
 export const FETCH_USER_SEARCH = "FETCH_USER_SEARCH";
+export const FETCH_USER_REQUEST = "FETCH_USER_REQUEST";
