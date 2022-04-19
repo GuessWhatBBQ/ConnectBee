@@ -14,12 +14,9 @@ import './Search.css';
 
 const Search = ({}) => {
   const dispatch = useDispatch();
-  const profile = useSelector(state => state.auth);
   const { query } = useParams();
   useEffect(() => {
-    if (profile) {
-      dispatch(fetchUserSearch(profile.authData.result._id, query));
-    }
+    dispatch(fetchUserSearch(query));
   }, [dispatch]);
   return (
     <div className='search'>

@@ -6,9 +6,9 @@ export const fetchUserFriendRequests = async (req, res) => {
 };
 
 export const sendFriendRequest = async (req, res) => {
-  const { userId, receiverId } = req.body;
+  const { receiverId } = req.body;
   try {
-    await insertFriendRequest(userId, receiverId);
+    await insertFriendRequest(req.userId, receiverId);
     res.status(200).json({message: "successful"});
   } catch (error) {
     res.status(500).json({message: "failed"});

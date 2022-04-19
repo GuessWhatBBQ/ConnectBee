@@ -53,10 +53,10 @@ export const signup = async (req, res) => {
   }
 };
 export const addFriend = async (req, res) => {
-  const { userId, friendId } = req.body;
+  const { friendId } = req.body;
   try {
-    addFriendToUser(userId, friendId);
-    removeFriendRequest(userId, friendId);
+    addFriendToUser(req.userId, friendId);
+    removeFriendRequest(req.userId, friendId);
     res.status(200).json({ message: "ok" });
   } catch (err) {
     res.status(500).json({ message: "Something went wrong" });
