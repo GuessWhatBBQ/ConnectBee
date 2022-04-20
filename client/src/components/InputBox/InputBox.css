@@ -1,7 +1,8 @@
 .input-box {
-    width: 97%;
+    width: 72vw;
     height: 25px;
     border-radius: 20px;
     margin: 2% 0% 0% 1%;
-    padding: 3px;
+    position: absolute;
+    bottom: 2%;
 }

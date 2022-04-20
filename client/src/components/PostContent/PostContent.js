@@ -3,6 +3,7 @@ import "./postContent.css";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import moment from "moment";
 
 import { deletePost, likePost } from "../../actions/posts";
@@ -33,8 +34,7 @@ export default function FeedContent({ content, post, setCurrentId }) {
 							}
 							alt=""
 						/> */}
-						<span className="contentUsername">{post.creator}</span>
-						<span className="postTime">{moment(post.createdAt).fromNow()}</span>
+						<span className="postTime">Posted {moment(post.createdAt).fromNow()}</span>
 					</div>
 					<div className="contentTopRight">
 						<MoreHorizIcon
@@ -61,27 +61,17 @@ export default function FeedContent({ content, post, setCurrentId }) {
 					</div>
 				</div>
 				<div className="contentCenter">
-					<span className="contentText">{post.message}</span>
+					<span className="contentText">{post.caption}</span>
 					<img className="contentImg" src={post.selectedFile} alt="" />
 				</div>
 				<div className="contentBottom">
 					<div className="contentBottomLeft">
-						<img
-							className="likeIcon"
-							src="assets/like.png"
-							alt=""
-							onClick={() => {
-								dispatch(likePost(post._id));
-							}}
-						/>
-						<img
-							className="likeIcon"
-							src="assets/heart.png"
-							alt=""
-							onClick={() => {
-								dispatch(likePost(post._id));
-							}}
-						/>
+            <ThumbUpIcon
+              className="likeIcon"
+              onClick={() => {
+                dispatch(likePost(post._id));
+              }}
+            />
 						<span className="contentLikeCounter">
 							{post.likeCount} people like it
 						</span>

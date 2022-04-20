@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import * as ConversationHistory from './conversationSchema.js';
+import ConversationHistory from './conversationSchema.js';
 
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -56,3 +56,11 @@ export const insertNewMessage = async (conversationId, senderId, message) => {
     doc.save();
 }
 
+export const insertNewConversation = async (userId, receiverId) => {
+  const doc = await ConversationHistory.create({
+    members: [userId, receiverId],
+    messages: [],
+  });
+  doc.save();
+  return doc;
+};

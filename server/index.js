@@ -26,7 +26,7 @@ app.use("/posts", postRoutes);
 app.use("/users", userRoutes);
 app.use("/api/search", searchRoutes);
 app.use("/api/users/friend/request", requestRoutes);
-app.get("/conversations", conversationRoutes);
+app.use("/conversations", conversationRoutes);
 
 const httpServer = createServer(app);
 const io = new Server(httpServer);

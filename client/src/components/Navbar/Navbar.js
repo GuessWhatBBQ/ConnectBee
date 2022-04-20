@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import "./navbar.css";
 import { Search, Person, Chat, Notifications } from "@mui/icons-material";
-import { generatePath, useNavigate } from "react-router-dom";
+import { generatePath, useNavigate, Link } from "react-router-dom";
 
 const Navbar = () => {
 	const navigate = useNavigate();
@@ -19,6 +18,19 @@ const Navbar = () => {
 		setSearchValue((searchValue) => {
 			return { ...searchValue, query: event.target.value };
 		});
+	};
+	const logout = () => {
+		localStorage.clear();
+		navigate("/auth");
+		console.log("logout is pressed");
+	};
+	const [profileName, setprofileName] = useState("");
+
+	const fetchProfileName = () => {
+		let prof = JSON.parse(localStorage.getItem("profile"));
+		let name = prof.result.name;
+		const results = name.split(" ");
+		setprofileName(results[0]);
 	};
 
 	return (
@@ -44,8 +56,13 @@ const Navbar = () => {
 			<div className="topBarRight">
 				<div className="topBarIcons">
 					<div className="topBarIconItem">
-						<Person></Person>
-						<span className="topBarIconItemBadge noselect">1</span>
+            <Link
+              to="/friends/request"
+              style={{ color: "black", textDecoration: "none" }}
+            >
+              <Person></Person>
+              <span className="topBarIconItemBadge noselect">1</span>
+            </Link>
 					</div>
 					<div className="topBarIconItem">
 						<Link
@@ -56,20 +73,21 @@ const Navbar = () => {
 							<span className="topBarIconItemBadge noselect">2</span>
 						</Link>
 					</div>
-					{/* <div className="topBarIconItem">
-						<Notifications></Notifications>
-						<span className="topBarIconItemBadge noselect">1</span>
-					</div> */}
 				</div>
-				<div>
+				<div className="topBarUserandLogout">
 					<Link
 						className="topBarUserSection"
 						to="/profile"
 						style={{ color: "black", textDecoration: "none" }}
 					>
-						<span className="profileName">Arafat</span>
-						<img className="topBarImg" src="assets/person/1.jpeg" alt="" />
+						<span className="profileName">${profileName}</span>
+						<img className="topBarImg" src="/img/profile/1.png" alt="" />
 					</Link>
+					{localStorage.getItem("profile") ? (
+						<button onClick={logout} id="logoutButton">
+							Logout
+						</button>
+					) : null}
 				</div>
 			</div>
 		</div>

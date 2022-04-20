@@ -4,11 +4,14 @@ import {
   CREATE,
   LIKE,
   DELETE,
+  FETCH_USER_POSTS,
 } from "../constants/actionTypes";
 
 export default (posts = [], action) => {
   switch (action.type) {
     case FETCH_ALL:
+      return action.payload;
+    case FETCH_USER_POSTS:
       return action.payload;
     case CREATE:
       return [...posts, action.payload];
