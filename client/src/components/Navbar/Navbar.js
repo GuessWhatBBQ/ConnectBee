@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import "./navbar.css";
 import { Search, Person, Chat, Notifications } from "@mui/icons-material";
-import { generatePath, useNavigate } from "react-router-dom";
+import { generatePath, useNavigate, Link } from "react-router-dom";
 
 const Navbar = () => {
 	const navigate = useNavigate();
@@ -19,6 +18,11 @@ const Navbar = () => {
 		setSearchValue((searchValue) => {
 			return { ...searchValue, query: event.target.value };
 		});
+	};
+	const logout = () => {
+		localStorage.clear();
+		navigate("/auth");
+		console.log("logout is pressed");
 	};
 
 	return (
@@ -61,7 +65,7 @@ const Navbar = () => {
 						<span className="topBarIconItemBadge noselect">1</span>
 					</div> */}
 				</div>
-				<div>
+				<div className="topBarUserandLogout">
 					<Link
 						className="topBarUserSection"
 						to="/profile"
@@ -70,6 +74,11 @@ const Navbar = () => {
 						<span className="profileName">Arafat</span>
 						<img className="topBarImg" src="assets/person/1.jpeg" alt="" />
 					</Link>
+					{localStorage.getItem("profile") ? (
+						<button onClick={logout} id="logoutButton">
+							Logout
+						</button>
+					) : null}
 				</div>
 			</div>
 		</div>
