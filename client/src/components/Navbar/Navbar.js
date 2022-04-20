@@ -67,7 +67,7 @@ const Navbar = () => {
 							style={{ color: "black", textDecoration: "none" }}
 						>
 							<Chat></Chat>
-							<span className="topBarIconItemBadge noselect">2</span>
+							{/* <span className="topBarIconItemBadge noselect">2</span> */}
 						</Link>
 					</div>
 				</div>

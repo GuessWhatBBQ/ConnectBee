@@ -46,7 +46,7 @@ function Form({ currentId, setCurrentId }) {
 		<div className="post">
 			<div className="postWrapper">
 				<div className="postTop">
-					<img className="postProfileImg" src="/assets/person/1.jpeg" alt="" />
+					<img className="postProfileImg" src="/img/profile/1.png" alt="" />
 					<input
 						value={postData.caption}
 						placeholder="What's on your mind?"
