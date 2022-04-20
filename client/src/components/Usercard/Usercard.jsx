@@ -22,12 +22,6 @@ const Usercard = ({ userId, profilePic, name, mutualFriends, sent }) => {
 				</div>
         {typeof sent === 'undefined' ? <PersonAddIcon onClick={handleSendRequest} /> : <CheckCircleIcon style={{ fill: "#0d8022" }}/>}
 			</div>
-			{/* <div className="userMutualFriends">
-				<h5>hello</h5>
-				<img src="./2.png" alt="" />
-				<img src="./2.png" alt="" />
-				<img src="./2.png" alt="" />
-			</div> */}
 		</div>
 	);
 };

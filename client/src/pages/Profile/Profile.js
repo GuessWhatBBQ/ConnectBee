@@ -43,7 +43,7 @@ export const Profile = () => {
 					</div>
 					<div className="profileRightBottom">
 						<Feed></Feed>
-						<Rightbar></Rightbar>
+            {userId ? <button>Message</button> : null }
 					</div>
 				</div>
 			</div>
