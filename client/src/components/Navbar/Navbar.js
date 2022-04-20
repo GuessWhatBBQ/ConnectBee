@@ -3,6 +3,8 @@ import "./navbar.css";
 import { Search, Person, Chat, Notifications } from "@mui/icons-material";
 import { generatePath, useNavigate, Link } from "react-router-dom";
 
+import logo from "../images/logo.png";
+
 const Navbar = () => {
 	const navigate = useNavigate();
 	const [searchValue, setSearchValue] = useState({
@@ -25,14 +27,14 @@ const Navbar = () => {
 		console.log("logout is pressed");
 	};
 
-  let prof = JSON.parse(localStorage.getItem("profile"));
-  let name = prof.result.name.split(" ")[0];
+	let prof = JSON.parse(localStorage.getItem("profile"));
+	let name = prof?.result?.name?.split(" ")[0];
 
 	return (
 		<div className="topBarContainer">
 			<div className="topBarLeft">
 				<Link to="/" style={{ color: "black", textDecoration: "none" }}>
-					<img src="./assets/logo.png" alt="" className="topBarLogoIcon" />
+					<img src={logo} alt="" className="topBarLogoIcon" />
 					<span className="topBarLogoText">ConnectBee</span>
 				</Link>
 			</div>
@@ -51,13 +53,13 @@ const Navbar = () => {
 			<div className="topBarRight">
 				<div className="topBarIcons">
 					<div className="topBarIconItem">
-            <Link
-              to="/friends/request"
-              style={{ color: "black", textDecoration: "none" }}
-            >
-              <Person></Person>
-              <span className="topBarIconItemBadge noselect">1</span>
-            </Link>
+						<Link
+							to="/friends/request"
+							style={{ color: "black", textDecoration: "none" }}
+						>
+							<Person></Person>
+							<span className="topBarIconItemBadge noselect">1</span>
+						</Link>
 					</div>
 					<div className="topBarIconItem">
 						<Link
