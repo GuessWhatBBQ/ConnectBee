@@ -43,7 +43,7 @@ export const Profile = () => {
 					</div>
 					<div className="profileRightBottom">
 						<Feed></Feed>
-            {userId ? <button>Message</button> : null }
+            {userId ? <button onClick={handleConversationCreation}>Message</button> : null }
 					</div>
 				</div>
 			</div>
