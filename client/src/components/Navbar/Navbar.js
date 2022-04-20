@@ -24,6 +24,14 @@ const Navbar = () => {
 		navigate("/auth");
 		console.log("logout is pressed");
 	};
+	const [profileName, setprofileName] = useState("");
+
+	const fetchProfileName = () => {
+		let prof = JSON.parse(localStorage.getItem("profile"));
+		let name = prof.result.name;
+		const results = name.split(" ");
+		setprofileName(results[0]);
+	};
 
 	return (
 		<div className="topBarContainer">
@@ -60,10 +68,6 @@ const Navbar = () => {
 							<span className="topBarIconItemBadge noselect">2</span>
 						</Link>
 					</div>
-					{/* <div className="topBarIconItem">
-						<Notifications></Notifications>
-						<span className="topBarIconItemBadge noselect">1</span>
-					</div> */}
 				</div>
 				<div className="topBarUserandLogout">
 					<Link
@@ -71,7 +75,7 @@ const Navbar = () => {
 						to="/profile"
 						style={{ color: "black", textDecoration: "none" }}
 					>
-						<span className="profileName">Arafat</span>
+						<span className="profileName">${profileName}</span>
 						<img className="topBarImg" src="assets/person/1.jpeg" alt="" />
 					</Link>
 					{localStorage.getItem("profile") ? (

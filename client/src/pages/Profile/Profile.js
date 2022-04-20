@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import "./profile.css";
 
 import Leftbar from "../../components/Leftbar/Leftbar";
@@ -6,6 +7,7 @@ import Feed from "../../components/Feed/Feed";
 import Rightbar from "../../components/Rightbar/Rightbar";
 
 export const Profile = () => {
+	const userSearchResult = useSelector((state) => state.search);
 	return (
 		<>
 			<div className="profileContainer">
@@ -23,7 +25,9 @@ export const Profile = () => {
 					</div>
 					<div className="profileRightBottom">
 						<Feed></Feed>
-						<Rightbar></Rightbar>
+						{userSearchResult.map((user) => {
+							return user.id == Profile.id ? null : <button>Message</button>;
+						})}
 					</div>
 				</div>
 			</div>

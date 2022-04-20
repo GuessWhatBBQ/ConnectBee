@@ -15,12 +15,6 @@ const Usercard = ({ profilePic, name, mutualFriends }) => {
 				</div>
 				<PersonAddIcon />
 			</div>
-			{/* <div className="userMutualFriends">
-				<h5>hello</h5>
-				<img src="./2.png" alt="" />
-				<img src="./2.png" alt="" />
-				<img src="./2.png" alt="" />
-			</div> */}
 		</div>
 	);
 };
