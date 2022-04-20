@@ -73,7 +73,7 @@ const Navbar = () => {
 						style={{ color: "black", textDecoration: "none" }}
 					>
 						<span className="profileName">Arafat</span>
-            <img className="topBarImg" src='img/profile/1.png' alt="" />
+            <img className="topBarImg" src='/img/profile/1.png' alt="" />
 					</Link>
 				</div>
 			</div>

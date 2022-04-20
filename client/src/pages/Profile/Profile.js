@@ -9,6 +9,7 @@ import Leftbar from "../../components/Leftbar/Leftbar";
 import Feed from "../../components/Feed/Feed";
 import Rightbar from "../../components/Rightbar/Rightbar";
 import { useParams } from "react-router-dom";
+import { createConversation } from "../../api";
 
 export const Profile = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,9 @@ export const Profile = () => {
       dispatch(getUserPosts(profile.authData.result._id));
     };
   }, [dispatch, profile, userId]);
+  const handleConversationCreation = () => {
+    createConversation(userId);
+  };
 	return (
 		<>
 			<div className="profileContainer">

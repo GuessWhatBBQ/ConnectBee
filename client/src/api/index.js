@@ -41,3 +41,5 @@ export const getConversation = (newConversationID, setConversationHistory, setPa
     }));
   });
 }
+
+export const createConversation = (conversationId) => API.post('/conversations/newconversation', { conversationId });
