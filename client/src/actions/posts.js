@@ -19,7 +19,6 @@ export const getPosts = () => async (dispatch) => {
 export const getUserPosts = (userId) => async (dispatch) => {
   try {
     const { data } = await api.fetchUserPosts(userId);
-    console.log(data)
     dispatch({ type: FETCH_USER_POSTS, payload: data });
   } catch (error) {
     console.log(error);

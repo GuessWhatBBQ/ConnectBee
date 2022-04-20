@@ -44,8 +44,13 @@ const Navbar = () => {
 			<div className="topBarRight">
 				<div className="topBarIcons">
 					<div className="topBarIconItem">
-						<Person></Person>
-						<span className="topBarIconItemBadge noselect">1</span>
+            <Link
+              to="/friends/request"
+              style={{ color: "black", textDecoration: "none" }}
+            >
+              <Person></Person>
+              <span className="topBarIconItemBadge noselect">1</span>
+            </Link>
 					</div>
 					<div className="topBarIconItem">
 						<Link

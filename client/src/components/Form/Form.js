@@ -13,7 +13,7 @@ function Form({ currentId, setCurrentId }) {
 	const [postData, setPostData] = useState({
 		creator: "",
 		title: "",
-		message: "",
+		caption: "",
 		tags: "",
 		selectedFile: "",
 	});
@@ -37,7 +37,7 @@ function Form({ currentId, setCurrentId }) {
 		setPostData({
 			creator: "",
 			title: "",
-			message: "",
+			caption: "",
 			tags: "",
 			selectedFile: "",
 		});
@@ -48,11 +48,11 @@ function Form({ currentId, setCurrentId }) {
 				<div className="postTop">
 					<img className="postProfileImg" src="/assets/person/1.jpeg" alt="" />
 					<input
-						value={postData.message}
+						value={postData.caption}
 						placeholder="What's on your mind?"
 						className="postInput"
 						onChange={(e) =>
-							setPostData({ ...postData, message: e.target.value })
+							setPostData({ ...postData, caption: e.target.value })
 						}
 					/>
 				</div>
