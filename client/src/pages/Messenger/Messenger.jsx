@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import io from "socket.io-client";
 
 import ConversationList from '../../components/ConversationList/ConversationList';
 import ChatBox from '../../components/ChatBox/ChatBox';
 
+import { getConversationList, getConversation } from '../../api/index';
+
 import './Messenger.css';
+import { useSelector } from 'react-redux';
 
 const socket = io();
 
 const Messenger = () => {
+    const profile = useSelector(state => state.auth);
     const [participents, setParticipents] = useState({
-        selfID: window.location.pathname.toString().slice(1),
+        selfID: profile.authData.result._id,
         conversationID: '0',
     });
     const [conversationHistory, setConversationHistory] = useState({
@@ -32,20 +35,11 @@ const Messenger = () => {
     function handleConversationChange(newConversationID) {
         socket.emit('leaveRoom', { selfProfileID: participents.selfID, conversationID: participents.conversationID });
         socket.emit('joinNewRoom', {conversationID: newConversationID});
-        axios.get('/conversation/' + newConversationID).then(({ data }) => {
-            setConversationHistory(data.conversation);
-            setParticipents((participents) => ({
-                ...participents,
-                conversationID: newConversationID,
-            }));
-        });
+        getConversation(newConversationID, setConversationHistory, setParticipents);
     }
 
     useEffect(() => {
-        axios.get('/conversations/' + participents.selfID).then(({ data }) => {
-            setConversationList(data.conversation);
-            handleConversationChange(data.conversation[0]._id);
-        });
+      getConversationList(participents.selfID, setConversationList, handleConversationChange);
     }, []);
 
     return (

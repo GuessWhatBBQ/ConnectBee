@@ -1,6 +1,6 @@
 .chatbox {
     width: 75vw;
-    height: 100vh;
+    height: 85vh;
     display: flex;
     flex-flow: column;
     overflow-y: scroll;

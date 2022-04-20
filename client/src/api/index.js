@@ -25,3 +25,19 @@ export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
 
 export const signIn = (formData) => API.post("/users/signin", formData);
 export const signUp = (formData) => API.post("/users/signup", formData);
+export const getConversationList = (userId, setConversationList, handleConversationChange) => {
+  API.get('/conversations/conversationlist/' + userId).then(({ data }) => {
+    setConversationList(data.conversation);
+    handleConversationChange(data.conversation[0]._id);
+  });
+};
+
+export const getConversation = (newConversationID, setConversationHistory, setParticipents) => {
+  API.get('/conversations/' + newConversationID).then(({ data }) => {
+    setConversationHistory(data.conversation);
+    setParticipents((participents) => ({
+      ...participents,
+      conversationID: newConversationID,
+    }));
+  });
+}
